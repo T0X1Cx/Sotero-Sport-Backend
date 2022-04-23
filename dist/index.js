@@ -1,5 +1,5 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
+var __importDefault = (this && this.__importDefault) || function(mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -24,7 +24,7 @@ server.app.use('/lists', list_routes_1.default);
 server.app.use('/items', item_routes_1.default);
 server.app.use('/events', event_routes_1.default);
 // Conexión BD
-mongoose_1.default.connect('mongodb://127.0.0.1:27017/SoteroSportDB?retryWrites=true&w=majority', { useNewUrlParser: true, useCreateIndex: true }, (err) => {
+mongoose_1.default.connect('mongodb+srv://usuario:root@soterosportdb.5xnrm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useCreateIndex: true }, (err) => {
     if (err)
         throw err;
     console.log('Base de datos Online');

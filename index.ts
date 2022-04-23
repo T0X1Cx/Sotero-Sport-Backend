@@ -29,7 +29,7 @@ server.app.use('/events', eventRoutes);
 
 
 // Conexión BD
-mongoose.connect('mongodb://127.0.0.1:27017/SoteroSportDB?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://usuario:root@soterosportdb.5xnrm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
     { useNewUrlParser: true, useCreateIndex: true }, (err) => {
 
         if (err) throw err;
