@@ -38,4 +38,4 @@ listSchema.pre('save', function (next) {
     next();
 });
 // Lo exportamos
-exports.List = (0, mongoose_1.model)('List', listSchema);
+exports.List = mongoose_1.model('List', listSchema);

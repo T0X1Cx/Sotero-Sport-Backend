@@ -24,4 +24,4 @@ const eventSchema = new mongoose_1.Schema({
     }
 });
 // Lo exportamos
-exports.Event = (0, mongoose_1.model)('Event', eventSchema);
+exports.Event = mongoose_1.model('Event', eventSchema);

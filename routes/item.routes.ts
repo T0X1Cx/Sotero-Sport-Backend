@@ -140,22 +140,54 @@ itemRoutes.delete('/delete/items/:listid', async (req: any, res: Response) => {
 // Actualizar items
 itemRoutes.post('/update/:listid/:itemid', (req: any, res: Response) => {
 
-    const item = {
-        title: req.body.title || req.item.title,
-        description: req.body.description || req.item.description,
-        preparation: req.body.preparation || req.item.preparation,
-        sets: req.body.sets || req.item.sets,
-        time: req.body.time || req.item.time,
-        restSets: req.body.restSets || req.item.restSets,
-        repeats: req.body.repeats || req.item.repeats,
-        restReps: req.body.restReps || req.item.restReps,
-        totalTime: req.body.totalTime,
-        list: req.params.listid
+    let item = {
+
+            
     }
 
-    Item.findByIdAndUpdate(req.params.itemid, item, { new: true }, (err, itemDB) => {
+    if(req.item){
 
-        if (err) throw err;
+            item = {
+            title: req.item.title,
+            description: req.item.description,
+            preparation: req.item.preparation,
+            sets: req.item.sets,
+            time: req.item.time,
+            restSets: req.item.restSets,
+            repeats: req.item.repeats,
+            restReps: req.item.restReps,
+            totalTime: req.body.totalTime,
+            list: req.params.listid
+        }
+    }else{
+
+            item = {
+            title: req.body.title,
+            description: req.body.description,
+            preparation: req.body.preparation,
+            sets: req.body.sets,
+            time: req.body.time,
+            restSets: req.body.restSets,
+            repeats: req.body.repeats,
+            restReps: req.body.restReps,
+            totalTime: req.body.totalTime,
+            list: req.params.listid
+        }
+
+    }
+
+    
+
+    Item.findOneAndUpdate(req.params.itemid, item, { new: true }, (err, itemDB) => {
+
+        if (err){
+            console.log(err);
+            return res.json({
+                ok: false,
+                message: err
+            });
+            
+        };
 
         if (!itemDB) {
             return res.json({

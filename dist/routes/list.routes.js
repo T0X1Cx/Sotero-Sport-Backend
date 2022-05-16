@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const authentication_1 = require("../middlewares/authentication");
 const list_model_1 = require("../models/list.model");
-const listRoutes = (0, express_1.Router)();
+const listRoutes = express_1.Router();
 // Obtener las listas del usuario logeado: mediante su token y su id
 listRoutes.get('/', [authentication_1.validateToken], (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let page = Number(req.query.page) || 1;

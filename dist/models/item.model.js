@@ -60,4 +60,4 @@ itemSchema.pre('save', function (next) {
     this.created = new Date();
     next();
 });
-exports.Item = (0, mongoose_1.model)('Item', itemSchema);
+exports.Item = mongoose_1.model('Item', itemSchema);

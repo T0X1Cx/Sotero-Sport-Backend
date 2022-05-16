@@ -1,5 +1,5 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function(mod) {
+var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -17,7 +17,7 @@ const server = new server_1.default();
 server.app.use(body_parser_1.default.urlencoded({ extended: true }));
 server.app.use(body_parser_1.default.json());
 // Cors (Esto es para que no tengamos problemas con el acceso CORS y no fallen algunas peticiones)
-server.app.use((0, cors_1.default)({ origin: true, credentials: true }));
+server.app.use(cors_1.default({ origin: true, credentials: true }));
 // Rutas de la app
 server.app.use('/user', user_routes_1.default);
 server.app.use('/lists', list_routes_1.default);

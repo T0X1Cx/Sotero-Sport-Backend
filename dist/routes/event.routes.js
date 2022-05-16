@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const event_model_1 = require("../models/event.model");
 const express_1 = require("express");
 const authentication_1 = require("../middlewares/authentication");
-const eventRoutes = (0, express_1.Router)();
+const eventRoutes = express_1.Router();
 // Obtener eventos
 eventRoutes.get('/', [authentication_1.validateToken], (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
