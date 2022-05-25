@@ -1,0 +1,2 @@
+//this.route.navigate(['/main/tabs/items/'+this.listId]).then(() => {
+          //window.location.reload();
