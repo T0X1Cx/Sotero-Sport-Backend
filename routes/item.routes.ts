@@ -142,15 +142,14 @@ itemRoutes.post('/update/:listid/:itemid', (req: any, res: Response) => {
 
     let item = {
 
-            
     }
 
     if(req.item){
 
-            item = {
+         item = {
             title: req.item.title,
             description: req.item.description,
-            preparation: req.item.preparation,
+            preparation: req.item.preparation || 0,
             sets: req.item.sets,
             time: req.item.time,
             restSets: req.item.restSets,
@@ -158,13 +157,14 @@ itemRoutes.post('/update/:listid/:itemid', (req: any, res: Response) => {
             restReps: req.item.restReps,
             totalTime: req.body.totalTime,
             list: req.params.listid
-        }
+            }
+
     }else{
 
-            item = {
+        item = {
             title: req.body.title,
             description: req.body.description,
-            preparation: req.body.preparation,
+            preparation: req.body.preparation || 0,
             sets: req.body.sets,
             time: req.body.time,
             restSets: req.body.restSets,
@@ -172,13 +172,16 @@ itemRoutes.post('/update/:listid/:itemid', (req: any, res: Response) => {
             restReps: req.body.restReps,
             totalTime: req.body.totalTime,
             list: req.params.listid
-        }
+            }
 
     }
 
     
+            
 
-    Item.findOneAndUpdate(req.params.itemid, item, { new: true }, (err, itemDB) => {
+    
+
+    Item.findByIdAndUpdate(req.params.itemid, item, { new: true }, (err, itemDB) => {
 
         if (err){
             console.log(err);
@@ -198,7 +201,7 @@ itemRoutes.post('/update/:listid/:itemid', (req: any, res: Response) => {
 
         res.json({
             ok: true,
-            item: 'Item actualizado con éxito'
+            item: itemDB
         });
 
 

@@ -106,7 +106,7 @@ itemRoutes.post('/update/:listid/:itemid', (req, res) => {
         item = {
             title: req.item.title,
             description: req.item.description,
-            preparation: req.item.preparation,
+            preparation: req.item.preparation || 0,
             sets: req.item.sets,
             time: req.item.time,
             restSets: req.item.restSets,
@@ -120,7 +120,7 @@ itemRoutes.post('/update/:listid/:itemid', (req, res) => {
         item = {
             title: req.body.title,
             description: req.body.description,
-            preparation: req.body.preparation,
+            preparation: req.body.preparation || 0,
             sets: req.body.sets,
             time: req.body.time,
             restSets: req.body.restSets,
@@ -130,7 +130,7 @@ itemRoutes.post('/update/:listid/:itemid', (req, res) => {
             list: req.params.listid
         };
     }
-    item_model_1.Item.findOneAndUpdate(req.params.itemid, item, { new: true }, (err, itemDB) => {
+    item_model_1.Item.findByIdAndUpdate(req.params.itemid, item, { new: true }, (err, itemDB) => {
         if (err) {
             console.log(err);
             return res.json({
@@ -147,7 +147,7 @@ itemRoutes.post('/update/:listid/:itemid', (req, res) => {
         }
         res.json({
             ok: true,
-            item: 'Item actualizado con éxito'
+            item: itemDB
         });
     });
 });
